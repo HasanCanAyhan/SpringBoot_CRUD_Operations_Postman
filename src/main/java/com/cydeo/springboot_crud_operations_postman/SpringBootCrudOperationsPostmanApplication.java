@@ -8,6 +8,8 @@ public class SpringBootCrudOperationsPostmanApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootCrudOperationsPostmanApplication.class, args);
+
+
     }
 
 }
