@@ -5,6 +5,7 @@ import com.cydeo.exception.ResourceNotFoundException;
 import com.cydeo.model.Employee;
 import com.cydeo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,14 +61,14 @@ public class EmployeeController {
     //build delete employee rest api
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Employee> deleteEmployee(@PathVariable Long id){
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable Long id){
 
         Employee deleteEmployee = employeeRepository.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("Employee not exist with id:" + id));
 
         employeeRepository.delete(deleteEmployee);
 
-        return ResponseEntity.ok(deleteEmployee);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 
